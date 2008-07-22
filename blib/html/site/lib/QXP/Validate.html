@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<!-- saved from url=(0017)http://localhost/ -->
+<script language="JavaScript" src="../../../displayToc.js"></script>
+<script language="JavaScript" src="../../../tocParas.js"></script>
+<script language="JavaScript" src="../../../tocTab.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../scineplex.css">
+<title>C:\Sri\QXP-Validate\blib/lib/QXP/Validate.pm</title>
+<link rel="stylesheet" href="../../../Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+<script>writelinks('__top__',3);</script>
+<h1><a>C:\Sri\QXP-Validate\blib/lib/QXP/Validate.pm</a></h1>
+<p><a name="__index__"></a></p>
+
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#functions">FUNCTIONS</a></li>
+	<ul>
+
+		<li><a href="#parseinline">Parseinline</a></li>
+		<li><a href="#parsetag">Parsetag</a></li>
+		<li><a href="#filter_nonascii_characters">Filter Non-ASCII characters</a></li>
+		<li><a href="#unintentional_characters">Unintentional Characters</a></li>
+		<li><a href="#dummy_tags">Dummy tags</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#support">SUPPORT</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>QXP::Validate</p>
+<p>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 1.00</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>When the strict XML is not used, parsers will not be helpful in validating the document instance. Also, developing a Document type definition for simple markup will not be effective. This module performs the basic functions like validating the inline and stand-alone elements, checking for non-ASCII character in the file, check for dummy characters, check for unintentional key press etc.</p>
+<pre>
+    <span class="keyword">use</span> <span class="variable">QXP::Validate</span><span class="operator">;</span>
+</pre>
+<pre>
+    <span class="keyword">my</span> <span class="variable">$foo</span> <span class="operator">=</span> <span class="variable">QXP::Validate</span><span class="operator">-&gt;</span><span class="variable">new</span><span class="operator">();</span>
+    <span class="operator">...</span>
+</pre>
+<p>
+</p>
+<hr />
+<h1><a name="functions">FUNCTIONS</a></h1>
+<p>
+</p>
+<h2><a name="parseinline">Parseinline</a></h2>
+<p>Will check the presence of the start and end tags for all the inline elements like Italic, Bold etc. All the tags started in the line needs to be closed within the same line. Run this function on a string of text. This will be useful, when you are reading line by line through a file. $stag gives you the number of occurrences for the start tag and $etag gives you the number of occurrences for the end tags.</p>
+<p>QXP::Validate-&gt;parseinline(``i'');</p>
+<p>
+</p>
+<h2><a name="parsetag">Parsetag</a></h2>
+<p>When you are reading through line by line in a file, this function will store the start and the end tags and increament the counter used for both. Once you have finished reading through the elements, examine the count of $first_parameter. If every opening tag has its respective close tag, the count will be 0. If the value of the variable is &gt;1, it means there are less closing tags than opening tags, on the other hand, if the value is &lt;1 there are less opening tags than closing tags. Call this function using one parameter. The parameter is the tag name which need to be examined.</p>
+<p>QXP::Validate-&gt;parsetag(``bl'');</p>
+<p>
+</p>
+<h2><a name="filter_nonascii_characters">Filter Non-ASCII characters</a></h2>
+<p>Will parse through the file to check whether any non-ASCII characters are present in the file. In a ASCII file, if there are any binary characters found, the function will report a error on the screen and will quit the execution.</p>
+<p>QXP::Validate-&gt;chk_nonascii();</p>
+<p>
+</p>
+<h2><a name="unintentional_characters">Unintentional Characters</a></h2>
+<p>Will check and report if any character if found repeating more than three times sequentially in a file. When working on a file, if the keyboarder inserts a series of characters unintentionally, they will be reported as errors.</p>
+<p>QXP::Validate-&gt;chk_seq();</p>
+<p>
+</p>
+<h2><a name="dummy_tags">Dummy tags</a></h2>
+<p>In the text file, if there are any elements starting and closing without any content to it, this function will report a error for that.</p>
+<p>QXP::Validate-&gt;chk_dummy();</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>Sriram Rajagopalan, <code>&lt;rjsri at cpan.org&gt;</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-qxp-validate at rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=QXP-Validate">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+</p>
+<hr />
+<h1><a name="support">SUPPORT</a></h1>
+<p>You can find documentation for this module with the perldoc command.</p>
+<pre>
+    <a href="../../../lib/Pod/perldoc.html">perldoc</a> QXP::Validate</pre>
+<p>You can also look for information at:</p>
+<ul>
+<li><strong><a name="item_annocpan_3a_annotated_cpan_documentation">AnnoCPAN: Annotated CPAN documentation</a></strong>
+
+<p><a href="http://annocpan.org/dist/QXP-Validate">http://annocpan.org/dist/QXP-Validate</a></p>
+</li>
+<li><strong><a name="item_cpan_ratings">CPAN Ratings</a></strong>
+
+<p><a href="http://cpanratings.perl.org/d/QXP-Validate">http://cpanratings.perl.org/d/QXP-Validate</a></p>
+</li>
+<li><strong><a name="item_rt_3a_cpan_27s_request_tracker">RT: CPAN's request tracker</a></strong>
+
+<p><a href="http://rt.cpan.org/NoAuth/Bugs.html?Dist=QXP-Validate">http://rt.cpan.org/NoAuth/Bugs.html</a></p>
+</li>
+<li><strong><a name="item_search_cpan">Search CPAN</a></strong>
+
+<p><a href="http://search.cpan.org/dist/QXP-Validate">http://search.cpan.org/dist/QXP-Validate</a></p>
+</li>
+</ul>
+<p>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2008 Sriram Rajagopalan, all rights reserved.</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.</p>
+
+</body>
+
+</html>
